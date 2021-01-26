@@ -1,7 +1,7 @@
 output "endpoints" {
   value = {
-    source_endpoint = aws_dms_endpoint.source
-    target_endpoint = aws_dms_endpoint.target
+    source = aws_dms_endpoint.source
+    target = aws_dms_endpoint.target
   }
 }
 
