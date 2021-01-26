@@ -145,6 +145,11 @@ variable "migration_type" {
   }
 }
 
+variable "only_fullload" {
+  type        = bool
+  description = "To specify if want only fullload or after fullload get ongoing changes with CDC."
+}
+
 variable "schema_name" {
   type        = string
   description = "Filter schema(s) in database with Like syntax. Ex: public, %."

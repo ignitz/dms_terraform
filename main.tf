@@ -5,9 +5,9 @@ module "dms" {
 
   count = length(var.servers)
 
-  service_name     = var.service_name
-  env              = var.env
-  region           = data.aws_region.current.name
+  service_name = var.service_name
+  env          = var.env
+  region       = data.aws_region.current.name
 
   # Endpoints params
   server_name      = var.servers[count.index].server_name
@@ -30,6 +30,7 @@ module "dms" {
 
   # Replication task params
   # Use like SQL with % to include multiple tables
-  schema_name = var.servers[count.index].schema_name
-  table_name  = var.servers[count.index].table_name
+  only_fullload = var.servers[count.index].only_fullload
+  schema_name   = var.servers[count.index].schema_name
+  table_name    = var.servers[count.index].table_name
 }
