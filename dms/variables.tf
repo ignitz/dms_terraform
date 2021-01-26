@@ -144,12 +144,6 @@ variable "migration_type" {
     error_message = "Allowed values for replication_instance_class are \"full-load\", \"cdc\", \"full-load-and-cdc\"."
   }
 }
-
-variable "only_fullload" {
-  type        = bool
-  description = "To specify if want only fullload or after fullload get ongoing changes with CDC."
-}
-
 variable "schema_name" {
   type        = string
   description = "Filter schema(s) in database with Like syntax. Ex: public, %."

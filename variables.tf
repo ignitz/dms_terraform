@@ -20,9 +20,8 @@ variable "servers" {
     subnet_ids                 = list(string)
     vpc_security_group_ids     = list(string)
 
-    only_fullload = bool
-    schema_name   = string
-    table_name    = string
+    schema_name = string
+    table_name  = string
   }))
 }
 

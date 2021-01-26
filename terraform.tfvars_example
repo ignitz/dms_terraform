@@ -19,7 +19,6 @@ servers = [
         subnet_ids = ["subnet-0000000000", "subnet-0000000001"]
         vpc_security_group_ids = ["sg-0000000000000000"]
 
-        only_fullload = false
         schema_name = "public"
         table_name  = "%"
     }
