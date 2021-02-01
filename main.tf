@@ -30,7 +30,6 @@ module "dms" {
 
   # Replication task params
   # Use like SQL with % to include multiple tables
-  only_fullload = var.servers[count.index].only_fullload
-  schema_name   = var.servers[count.index].schema_name
-  table_name    = var.servers[count.index].table_name
+  schema_name = var.servers[count.index].schema_name
+  table_name  = var.servers[count.index].table_name
 }
