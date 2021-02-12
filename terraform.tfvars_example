@@ -1,5 +1,14 @@
 service_name="dms-test"
 env="dev"
+instance_params = {
+    replication_instance_class = "dms.t2.micro"
+    allocated_storage = 50
+    availability_zone = "us-east-1a"
+    publicly_accessible = false
+    subnet_ids = ["subnet-0000000000", "subnet-0000000001"]
+    vpc_security_group_ids = ["sg-0000000000000000"]
+}
+
 servers = [
     {
         server_name="dms-test.xxxxxxxxxxxxxx.us-east-1.rds.amazonaws.com"
@@ -11,14 +20,6 @@ servers = [
         bucket_name="xxxxxxxxxxxxxxxxxx"
         bucket_folder="xxxxxxxx/yyyyyyyyy"
         compression_type="NONE"
-
-        replication_instance_class = "dms.t2.micro"
-        allocated_storage = 50
-        availability_zone = "us-east-1a"
-        publicly_accessible = false
-        subnet_ids = ["subnet-0000000000", "subnet-0000000001"]
-        vpc_security_group_ids = ["sg-0000000000000000"]
-
         schema_name = "public"
         table_name  = "%"
     }

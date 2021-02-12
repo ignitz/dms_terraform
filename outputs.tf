@@ -1,3 +1,3 @@
 output "data" {
-  value = module.dms
+  value = module.dms_tasks
 }

@@ -1,7 +1,7 @@
 data "aws_region" "current" {}
 
-module "dms" {
-  source = "./dms"
+module "dms_tasks" {
+  source = "./dms_tasks"
 
   count = length(var.servers)
 
@@ -20,16 +20,21 @@ module "dms" {
   bucket_folder    = var.servers[count.index].bucket_folder
   compression_type = var.servers[count.index].compression_type
 
-  # Replication instance params
-  replication_instance_class = var.servers[count.index].replication_instance_class
-  allocated_storage          = var.servers[count.index].allocated_storage
-  availability_zone          = var.servers[count.index].availability_zone
-  publicly_accessible        = var.servers[count.index].publicly_accessible
-  subnet_ids                 = var.servers[count.index].subnet_ids
-  vpc_security_group_ids     = var.servers[count.index].vpc_security_group_ids
-
   # Replication task params
   # Use like SQL with % to include multiple tables
-  schema_name = var.servers[count.index].schema_name
-  table_name  = var.servers[count.index].table_name
+  replication_instance_arn = module.dms_instance.replication_instance.replication_instance_arn
+  schema_name              = var.servers[count.index].schema_name
+  table_name               = var.servers[count.index].table_name
+}
+
+module "dms_instance" {
+  source = "./dms_instance"
+
+  # Replication instance params
+  replication_instance_class = var.instance_params.replication_instance_class
+  allocated_storage          = var.instance_params.allocated_storage
+  availability_zone          = var.instance_params.availability_zone
+  publicly_accessible        = var.instance_params.publicly_accessible
+  subnet_ids                 = var.instance_params.subnet_ids
+  vpc_security_group_ids     = var.instance_params.vpc_security_group_ids
 }
